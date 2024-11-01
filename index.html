@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+   <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
 
-    <div>
-        <h1>signup</h1>
-
-        <label>Email
-            <br>
-            <input type="email" id="email" >
-        </label>
-<br>
-    <label>password
-        <br>
-        <input type="password" id="password" required>
-    </label>
-<br>
-    <button id="signup">signup</button>
-</div>
+        <div class="container">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+                <input type="email" placeholder="Email" required id="email">
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit" id="signup">Sign Up</button>
+                <button type="button" class="google-btn">Sign Up with Google</button>
+            </form>
+            <p>Already have an account? <a href="signin.html">Sign In</a></p>
+        </div>
 
  <script src="firebase.js" type="module"></script>   
  <script src="app.js" type="module"></script>   

@@ -1,38 +1,39 @@
-import{ auth, createUserWithEmailAndPassword, onAuthStateChanged } from "./firebase.js";
+import { auth, createUserWithEmailAndPassword, onAuthStateChanged } from "./firebase.js";
 
+// Monitor authentication state
 onAuthStateChanged(auth, (user) => {
     if (user) {
-    console.log("user",user);
+        console.log("user", user);
     } else {
         console.log("user not exist");
     }
 });
 
-    const signUp = () => {
-        let emailInput = document.getElementById("email");
-        let passwordInput = document.getElementById("password");
-    
-        let email = emailInput.value;
-        let password = passwordInput.value;
-    
-        if (email.includes("@") && password.length >= 6) {  
-            createUserWithEmailAndPassword(auth, email, password)
+const signUp = () => {
 
-                .then((response) => {
-                    console.log("user", response.user);
-                })
-                .catch((error) => {
-                    console.log("error", error.code);
-                });
+    let email = document.getElementById("email").value; 
+    let password = document.getElementById("password").value;
 
-        } else {
-            console.log("Invalid email or password.");
-        }
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g; 
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*@).{8,}$/gm; 
+
+    if (emailRegex.test(email) && passwordRegex.test(password)) {
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((response) => {
+                alert("Account successfully signed up");
+                console.log("user", response.user);
+            })
+            .catch((error) => {
+                alert(error.code);
+                console.log("error", error.message); 
+            });
+    } else {
+        console.log("Invalid email or password.");
     }
-    
-    let signUpBtn = document.getElementById("signup");
-    signUpBtn.addEventListener("click", signUp);
-    
 
+}
 
-    
+let signUpBtn = document.getElementById("signup");
+signUpBtn.addEventListener("click", signUp);
+
